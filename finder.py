@@ -2,17 +2,22 @@
 def get_all_names():
     with open('pokemon.txt',newline=None) as f:
         l=f.read()
-        return l.split('\n')
+        e=l.split('\n')
+        nl=[]
+        for i in e:
+            i=i.lower()
+            nl.append(i)
+        return nl
 
 def get_the_pokemon(clue,names):
     matches=[]
     for name in names:
-        for i in clue:
-            if i in ['_', name[clue.index(i)]]:
+        for i,j in zip(clue,name):
+            if i not in [j, '_']:
                 break
         else:
             matches.append(name)
-    return names
+    return matches
 
 
 class Finder:
